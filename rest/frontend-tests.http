@@ -1,0 +1,154 @@
+### ========================================
+### TESTES DO FRONTEND - SISTEMA DE ALUNOS
+### ========================================
+
+### 1. TESTAR CONEXÃO COM O SERVIDOR
+GET http://localhost:3000/alunos
+Content-Type: application/json
+
+### 2. CRIAR ALUNO (POST) - Simulando o que o frontend faz
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "João Silva Teste",
+  "endereco": {
+    "cep": "01310-100",
+    "logradouro": "Avenida Paulista",
+    "cidade": "São Paulo",
+    "bairro": "Bela Vista",
+    "estado": "SP",
+    "numero": "1000",
+    "complemento": "Apto 101"
+  },
+  "cursos": ["DSM"]
+}
+
+### 3. CRIAR ALUNO COM MÚLTIPLOS CURSOS
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "Maria Santos Teste",
+  "endereco": {
+    "cep": "20000-000",
+    "logradouro": "Rua da Liberdade",
+    "cidade": "Rio de Janeiro",
+    "bairro": "Centro",
+    "estado": "RJ",
+    "numero": "500",
+    "complemento": "Sala 201"
+  },
+  "cursos": ["CDN", "CO"]
+}
+
+### 4. BUSCAR CEP (GET) - Simulando busca de CEP do frontend
+GET http://localhost:3000/buscar-cep/01310-100
+Content-Type: application/json
+
+### 5. BUSCAR CEP INVÁLIDO
+GET http://localhost:3000/buscar-cep/00000-000
+Content-Type: application/json
+
+### 6. LISTAR TODOS OS ALUNOS (GET)
+GET http://localhost:3000/alunos
+Content-Type: application/json
+
+### 7. BUSCAR ALUNO POR ID (GET) - Substitua [ID] pelo ID real
+GET http://localhost:3000/alunos/[ID]
+Content-Type: application/json
+
+### 8. ATUALIZAR ALUNO (PUT) - Substitua [ID] pelo ID real
+PUT http://localhost:3000/alunos/[ID]
+Content-Type: application/json
+
+{
+  "nome": "João Silva Atualizado",
+  "endereco": {
+    "cep": "01310-100",
+    "logradouro": "Avenida Paulista",
+    "cidade": "São Paulo",
+    "bairro": "Bela Vista",
+    "estado": "SP",
+    "numero": "2000",
+    "complemento": "Apto 202"
+  },
+  "cursos": ["DSM", "CDN"]
+}
+
+### 9. DELETAR ALUNO POR ID (DELETE) - Substitua [ID] pelo ID real
+DELETE http://localhost:3000/alunos/[68cb4b0e7f69aeb719375285]
+Content-Type: application/json
+
+### 10. DELETAR ALUNO POR MATRÍCULA (DELETE) - Substitua [MATRICULA] pela matrícula real
+DELETE http://localhost:3000/alunos/matricula/[MATRICULA]
+Content-Type: application/json
+
+### ========================================
+### TESTES DE ERRO
+### ========================================
+
+### 11. TESTAR CRIAÇÃO COM DADOS INVÁLIDOS
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "endereco": {
+    "cep": "123",
+    "logradouro": "",
+    "cidade": "",
+    "bairro": "",
+    "estado": "",
+    "numero": "",
+    "complemento": ""
+  },
+  "cursos": []
+}
+
+### 12. TESTAR BUSCA DE ALUNO INEXISTENTE
+GET http://localhost:3000/alunos/000000000000000000000000
+Content-Type: application/json
+
+### 13. TESTAR ATUALIZAÇÃO DE ALUNO INEXISTENTE
+PUT http://localhost:3000/alunos/000000000000000000000000
+Content-Type: application/json
+
+{
+  "nome": "Teste",
+  "endereco": {
+    "cep": "01310-100",
+    "logradouro": "Teste",
+    "cidade": "São Paulo",
+    "bairro": "Teste",
+    "estado": "SP",
+    "numero": "1",
+    "complemento": ""
+  },
+  "cursos": ["DSM"]
+}
+
+### 14. TESTAR EXCLUSÃO DE ALUNO INEXISTENTE
+DELETE http://localhost:3000/alunos/000000000000000000000000
+Content-Type: application/json
+
+### ========================================
+### INSTRUÇÕES DE USO
+### ========================================
+
+# 1. Primeiro, execute o teste #1 para verificar se o servidor está online
+# 2. Execute o teste #2 para criar um aluno e anote o ID retornado
+# 3. Execute o teste #6 para listar todos os alunos e veja os IDs disponíveis
+# 4. Substitua [ID] nos testes #7, #8 e #9 pelo ID real de um aluno
+# 5. Substitua [MATRICULA] no teste #10 pela matrícula real de um aluno
+# 6. Execute os testes de erro (#11-#14) para verificar tratamento de erros
+
+### ========================================
+### LOGS ESPERADOS NO SERVIDOR
+### ========================================
+
+# Ao executar os testes, você deve ver no console do servidor:
+# - Conexão com MongoDB
+# - Logs de requisições recebidas
+# - Logs de operações no banco de dados
+# - Logs de respostas enviadas

@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:3000
+
+### Teste GET - Status do servidor
+GET {{baseUrl}}
+
+### Buscar endereço por CEP
+GET {{baseUrl}}/buscar-cep/01310-100
+
+### Buscar endereço por CEP (sem hífen)
+GET {{baseUrl}}/buscar-cep/01310100
+
+### Criar novo aluno
+POST {{baseUrl}}/alunos
+Content-Type: application/json
+
+{
+    "nome": "João Silva",
+    "endereco": {
+        "cep": "01310-100",
+        "logradouro": "Avenida Paulista",
+        "cidade": "São Paulo",
+        "bairro": "Bela Vista",
+        "estado": "SP",
+        "numero": "1000",
+        "complemento": "Apto 101"
+    },
+    "cursos": ["DSM", "CDN"]
+}
+
+### Buscar todos os alunos
+GET {{baseUrl}}/alunos
+
+### Buscar aluno por ID (substitua pelo ID real)
+GET {{baseUrl}}/alunos/ID_DO_ALUNO
+
+### Atualizar aluno (substitua pelo ID real)
+PUT {{baseUrl}}/alunos/ID_DO_ALUNO
+Content-Type: application/json
+
+{
+    "nome": "João Silva Santos",
+    "endereco": {
+        "cep": "01310-100",
+        "logradouro": "Avenida Paulista",
+        "cidade": "São Paulo",
+        "bairro": "Bela Vista",
+        "estado": "SP",
+        "numero": "1000",
+        "complemento": "Apto 201"
+    },
+    "cursos": ["DSM", "CDN", "CO"]
+}
+
+### Deletar aluno (substitua pelo ID real)
+DELETE {{baseUrl}}/alunos/68cb51dad1ec8e536a415ccc
